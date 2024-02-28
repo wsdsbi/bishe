@@ -1,5 +1,14 @@
 <template>
-  <div>
+  <div class="top-right-link"> 
+    <el-button  type="text" @click="centerDialogVisible = true"
+      >登录</el-button
+    >
+    <el-dialog
+      title="登录"
+      :visible.sync="centerDialogVisible"
+      width="40%"
+      center
+    >
     <el-form
       status-icon
       ref="ruleForm"
@@ -31,6 +40,7 @@
         <el-button @click="close">取 消</el-button>
       </el-form-item>
     </el-form>
+    </el-dialog>
   </div>
 </template>
 <script>
@@ -50,7 +60,7 @@ export default {
   },
   methods: {
     close() {
-      this.$emit("closefather", false);
+      this.centerDialogVisible=false
     },
     resetForm() {
       (this.account = ""), (this.password = ""), (this.check = "");
@@ -67,7 +77,8 @@ export default {
           password: this.password,
         });
         if (re) {
-          
+          //localStorage.setItem(this.account)
+          this.centerDialogVisible=false
         }
       }
     },
@@ -83,5 +94,11 @@ export default {
   -moz-user-select: none; /* Firefox */
   -ms-user-select: none; /* IE/Edge */
   user-select: none; /* 标准语法 */
+}
+.top-right-link {
+  position: fixed; /* 固定定位 */  
+  top: 9px; /* 距离视口顶部10px */  
+  right: 20px; /* 距离视口右侧10px */  
+  /* 其他样式如需要 */  
 }
 </style>

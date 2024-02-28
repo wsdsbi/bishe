@@ -6,8 +6,8 @@ import UserStatus from '@/views/user_status/UserStatus.vue'
 Vue.use(VueRouter)
 
 const routes = [
-  { path: '/login', component: LoginForm },
-  { path: '/', component: UserStatus }
+  { path: '/', component: LoginForm },
+  { path: '/login/*', component: UserStatus }
 ]
 
 const router = new VueRouter({

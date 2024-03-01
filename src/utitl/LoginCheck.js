@@ -1,11 +1,12 @@
 
 import request from '@/utitl/axios';
 
-    const check_log=async function(){
+    const user_status_check=async function(){
         const re= await request.post('/login',{'account':localStorage.getItem('account'),'password':localStorage.getItem('password')})
-        return re
+        return re.data
+    
     }
-            
-    export default check_log
-        
+    export default user_status_check
+    
+    
     

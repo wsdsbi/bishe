@@ -44,7 +44,6 @@
 <script>
 import request from "../../utitl/axios.js";
 import CheckCode from "../../components/CheckCode.vue";
-import check_log from "@/components/LoginCheck.js";
 
 export default {
   components: { CheckCode },
@@ -75,12 +74,15 @@ export default {
           account: this.account,
           password: this.password,
         });
-        console.log(re.data);
         if(re.data) {
           localStorage.setItem("account", this.account);
           localStorage.setItem("password", this.password);
+          localStorage.setItem("status", '1');
           this.centerDialogVisible = false;
+          this.$emit('reset','1')
+          if(this.$route.path!="/login"){
           this.$router.push("/login");
+          }
         } else {
           this.$notify.error({
             title: "错误",

@@ -1,11 +1,8 @@
 <template>
   <el-menu
-    default-active="2"
     class="el-menu-vertical-demo"
-    @open="handleOpen"
-    @close="handleClose"
   >
-    <el-submenu index="1">
+    <el-submenu index="1" >
       <template slot="title">
         <i class="el-icon-menu"></i>
         <span>导航一</span>
@@ -30,13 +27,8 @@
 <script>
 export default {
   methods: {
-    handleOpen(key, keyPath) {
-      console.log(key, keyPath);
-    },
-    handleClose(key, keyPath) {
-      console.log(key, keyPath);
-    },
-  },
+    
+  }
 };
 </script>
 <style>

@@ -8,24 +8,29 @@
     <el-aside style="height: 660px;">
       <app-side></app-side>
     </el-aside>
-    <el-main style="">Main</el-main>
+    <el-main>
+      <router-view></router-view>
+    </el-main>
   </el-container>
 </el-container>
+<user-montor></user-montor>
   </div>
 </template>
 
 <script>
 import AppSide from './views/container/AppSide.vue'
 import AppHead from './views/container/AppHead.vue'
+import AppMain from './views/container/AppMain.vue'
+import UserMontor from './views/user_status_monitor/UserMontor.vue'
 export default {
-  components:{AppSide,AppHead}
+  components:{AppSide,AppHead,AppMain,UserMontor}
 }
 </script>
 
 <style>
 .el-header, .el-footer {
   font-family: "Helvetica Neue";
-    background-color: #DCDFE6;
+    background-color: #e5ebeb;
     color: #333;
     text-align: center;
     line-height: 60px;
@@ -33,7 +38,7 @@ export default {
   }
   
   .el-aside {
-    background-color: #FFFFFF;
+    background-color: #f4f5f7;
     color: #333;
     text-align: center;
     height: 200px;
@@ -42,8 +47,8 @@ export default {
   }
   
   .el-main {
-    background-color: #EBEEF5;
-    color: #333;
+    background-color: #FFFFFF;
+    color: #faf9f9;
     text-align: center;
     line-height: 160px;
     height: 660px;

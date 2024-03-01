@@ -1,13 +1,14 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import LoginForm from '@/views/login/LoginForm.vue'
-import UserStatus from '@/views/user_status/UserStatus.vue'
+import AppMain from '@/views/container/AppMain.vue'
+import UserMontor from '@/views/user_status_monitor/UserMontor.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
-  { path: '/', component: LoginForm },
-  { path: '/login/*', component: UserStatus }
+  { path: '/login', component: AppMain },
+  { path: '/user_change', component: UserMontor }
+
 ]
 
 const router = new VueRouter({

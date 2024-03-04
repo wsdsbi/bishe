@@ -23,7 +23,12 @@ import AppHead from './views/container/AppHead.vue'
 import AppMain from './views/container/AppMain.vue'
 import UserMontor from './views/user_status_monitor/UserMontor.vue'
 export default {
-  components:{AppSide,AppHead,AppMain,UserMontor}
+  components:{AppSide,AppHead,AppMain,UserMontor},
+  updated(){
+        if(localStorage.getItem('status')!='1'&& this.$route.path!="/"){
+          this.$router.push("/");
+        }
+      }
 }
 </script>
 
@@ -41,7 +46,7 @@ export default {
     background-color: #f4f5f7;
     color: #333;
     text-align: center;
-    height: 200px;
+    height: 400px;
     line-height: 200px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
   }
@@ -51,8 +56,9 @@ export default {
     color: #faf9f9;
     text-align: center;
     line-height: 160px;
-    height: 660px;
+    height: 770px;
     width: 400px;
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1)
   }
   
   body > .el-container {

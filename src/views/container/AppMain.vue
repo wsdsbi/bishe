@@ -69,7 +69,10 @@ export default {
             tablename:'',
             indicator:'',
             comment: '',
-            owned:''
+            owned:false,
+            account:localStorage.getItem('account'),
+            createtime:new Date().toLocaleString(),
+            updatetime:new Date().toLocaleString()
         },
         tableOptions:[],
         clomOptions:[]

@@ -8,6 +8,7 @@
 export default {
     methods:{
       exit(){
+        localStorage.setItem('status','0')
         this.$emit('change_status','0')
         if(this.$route.path!="/"){
         this.$router.push("/");

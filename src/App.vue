@@ -5,10 +5,10 @@
     <app-head></app-head>
   </el-header>
   <el-container>
-    <el-aside style="height: 660px;">
+    <el-aside>
       <app-side></app-side>
     </el-aside>
-    <el-main>
+    <el-main >
       <router-view></router-view>
     </el-main>
   </el-container>
@@ -46,7 +46,7 @@ export default {
     background-color: #f4f5f7;
     color: #333;
     text-align: center;
-    height: 400px;
+    height: 100%;
     line-height: 200px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
   }
@@ -56,7 +56,7 @@ export default {
     color: #faf9f9;
     text-align: center;
     line-height: 160px;
-    height: 770px;
+    height: 100%;
     width: 400px;
     box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1)
   }

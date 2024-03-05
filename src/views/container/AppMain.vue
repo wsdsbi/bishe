@@ -1,6 +1,6 @@
 <template>
-  <div style="width: 100%">
-    <el-form ref="form" :model="form" label-width="80px" a>
+  <div style="width: 100%; height: 100%;">
+    <el-form ref="form" :model="form" label-width="80px" style="height: 795px;">
         <el-form-item label="">
         <el-tag type="success"  style="position: absolute; top: 5px; left: 0;">数据分域</el-tag>
         <el-select v-model="form.active" placeholder="请选择数据域">

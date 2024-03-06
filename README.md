@@ -1,4 +1,4 @@
-# bishe
+# indicator_planform
 
 ## Project setup
 ```

@@ -1,6 +1,6 @@
 <template>
   <div>
-    指标管理平台
+    贵重金属交易平台
     <user-status @change_status="change"  v-if="status=='1'"></user-status>
     <login-form @reset="set" v-else ></login-form>
   </div>

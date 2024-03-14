@@ -2,50 +2,40 @@
   <div style="width: 100%; height: 100%;">
     <el-form ref="form" :model="form" label-width="80px" style="height: 795px;">
         <el-form-item label="">
-        <el-tag type="success"  style="position: absolute; top: 5px; left: 0;">数据分域</el-tag>
-        <el-select v-model="form.active" placeholder="请选择数据域">
-          <el-option label="订单" value="order"></el-option>
-          <el-option label="流量" value="flow"></el-option>
-          <el-option label="房屋" value="house"></el-option>
-          <el-option label="用户" value="user"></el-option>
+        <el-tag type="success"  style="position: absolute; top: 5px; left: 0;">金属类型</el-tag>
+        <el-select v-model="form.type" placeholder="请选择金属类型">
+          <el-option label="黄金" value="黄金"></el-option>
+          <el-option label="铂金" value="铂金"></el-option>
+          <el-option label="白银" value="白银"></el-option>
+          <el-option label="铂" value="铂"></el-option>
+          <el-option label="钴" value="钴"></el-option>
         </el-select>
       </el-form-item>
 
       <el-form-item label="">
-        <el-tag type="success"  style="position: absolute; top: 5px; left: 0;">数据分层</el-tag>
-        <el-select v-model="form.regin" placeholder="数据分层">
-          <el-option label="dwd" value="dwd"></el-option>
-          <el-option label="testmybatisplus" value="testmybatisplus"></el-option>
-        </el-select>
-      </el-form-item>
-
-      <el-form-item label="">
-        <el-tag type="success"  style="position: absolute; top: 5px; left: 0;">数仓表名</el-tag>
-        <el-select v-model="form.tablename" placeholder="请选择数仓表">
-          <el-option  
-        v-for="option in tableOptions"  
-        :key="option.clom"  
-        :label="option.clom"  
-        :value="option.clom">  
-      </el-option>  
+        <el-tag type="success"  style="position: absolute; top: 5px; left: 0;">交易形式</el-tag>
+        <el-select v-model="form.bargin" placeholder="交易形式">
+          <el-option label="线上" value="online"></el-option>
+          <el-option label="线下" value="face"></el-option>
         </el-select>
       </el-form-item>
       <el-form-item label="">
-        <el-tag type="success" style="position: absolute; top: 5px; left: 0"
-          >原子指标</el-tag
-        >
-        <el-select v-model="form.indicator" placeholder="请选择原子指标">
-          <el-option  
-        v-for="option in clomOptions"  
-        :key="option.clom"  
-        :label="option.clom"  
-        :value="option.clom">  
-      </el-option> 
+        <el-tag type="success"  style="position: absolute; top: 5px; left: 0;">金属重量</el-tag>
+        <el-select v-model="form.height" placeholder="金属重量">
+          <el-option label="1kg-10kg" value="1"></el-option>
+          <el-option label="10kg-20kg" value="10kg"></el-option>
+          <el-option label="20kg-30kg" value="20kg"></el-option>
+          <el-option label="30kg-40kg" value="30kg"></el-option>
+          <el-option label="需要测量" value="需要测量"></el-option>
         </el-select>
       </el-form-item>
       <el-form-item label="" >
-        <el-tag type="success"  style="position: absolute; top: 5px; left: 0;">指标描述</el-tag>
-        <el-input type="textarea" v-model="form.comment" style="width: 70%; "></el-input>
+        <el-tag type="success"  style="position: absolute; top: 5px; left: 0;">出售价格</el-tag>
+        <el-input type="textarea" v-model="form.price" style="width: 15%;height: 40px; "></el-input>
+      </el-form-item>
+      <el-form-item label="" >
+        <el-tag type="success"  style="position: absolute; top: 5px; left: 0;">金属描述</el-tag>
+        <el-input type="textarea" v-model="form.desc" style="width: 70%; "></el-input>
       </el-form-item>
       <el-form-item>
         <el-tag type="success"  style="position: absolute; top: 5px; left: 0;">本人可见</el-tag>
@@ -64,18 +54,17 @@ export default {
     data() {
       return {
         form: {
-          active:'',
-            regin:'',
-            tablename:'',
-            indicator:'',
-            comment: '',
+            type:'',
+            bargin:'',
+            height:'',
+            price:'',
+            desc: '',
+            status:1,
             owned:false,
             account:localStorage.getItem('account'),
             createtime:new Date().toLocaleString(),
             updatetime:new Date().toLocaleString()
         },
-        tableOptions:[],
-        clomOptions:[]
       }
     },
     methods: {
@@ -83,13 +72,19 @@ export default {
         console.log(this.form)
         try {
 
-        if(this.form.active!=''&&this.form.regin!=''&& this.form.tablename!=''&&this.form.indicator!=''&&this.form.desc!=''){
-          const re= await (await request.post('/insert_indicator_control',this.form)).data
+        if(this.form.type!=''&&this.form.bargin!=''&& this.form.price!=''&&this.form.height!=''&&this.form.desc!=''){
+          const re= await (await request.post('/create_metal_order',this.form)).data
           this.$notify.success({
           title: "提交",
           message: "提交"+re,
         })
       }
+      else{
+        this.$notify.error({
+            title: "提交失败",
+            message: "不能为空"
+      })
+    }
           } catch (error) {
             this.$notify.error({
             title: "提交失败",
@@ -97,19 +92,6 @@ export default {
           })
         }
       }
-      },
-    watch: {
-        async 'form.regin'(){
-          this.tableOptions=''
-          this.tableOptions=(await request.post('/get_tab_info',{'regin':this.form.regin,'table':this.form.tablename})).data;
-          this.form.table=''
-          this.form.indicator=''
-        },
-        async 'form.tablename'(){
-          this.clomOptions=''
-          this.clomOptions=(await request.post('/get_tab_clom',{'regin':this.form.regin,'table':this.form.tablename})).data;
-          this.form.indicator=''
-        },
       }
 }
 </script>

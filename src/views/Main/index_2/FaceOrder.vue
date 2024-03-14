@@ -1,44 +1,5 @@
 <template>
   <div>
-    <div
-      class="block"
-      style="display: flex; align-items: center; height: 100px"
-    >
-      <el-date-picker
-        v-model="action.date"
-        type="daterange"
-        range-separator="至"
-        start-placeholder="开始日期"
-        end-placeholder="结束日期"
-        value-format="yyyy-mm-dd hh:mm:ss"
-      >
-      </el-date-picker>
-      <el-select v-model="action.type" placeholder="输入金属类型">
-        <el-option label="黄金" value="黄金"></el-option>
-          <el-option label="铂金" value="铂金"></el-option>
-          <el-option label="白银" value="白银"></el-option>
-          <el-option label="铂" value="铂"></el-option>
-          <el-option label="钴" value="钴"></el-option>
-      </el-select>
-      <el-select v-model="action.bargin" placeholder="交易形式">
-        <el-option label="线上" value="线上"></el-option>
-          <el-option label="线下" value="线下"></el-option>
-          
-      </el-select>
-      
-      <el-select v-model="action.height" placeholder="金属重量">
-          <el-option label="1kg-10kg" value="1"></el-option>
-          <el-option label="10kg-20kg" value="10kg"></el-option>
-          <el-option label="20kg-30kg" value="20kg"></el-option>
-          <el-option label="30kg-40kg" value="30kg"></el-option>
-        </el-select>
-      <el-input
-        v-model="action.account"
-        placeholder="卖方"
-        style="width: 300px"
-      ></el-input>
-      <el-button type="success" @click="Search" round>搜索</el-button>
-    </div>
     <el-table :data="currentTableData" max-height="100%" border style="width: 100%">
       <el-table-column
         prop="createtime"
@@ -54,44 +15,29 @@
         align="center"
       >
       </el-table-column>
-      <el-table-column prop="bargin" label="交易类型" width="190" align="center">
+      <el-table-column prop="address" label="回收地点" width="190" align="center">
       </el-table-column>
-      <el-table-column
-        prop="height"
-        label="重量"
-        width="190"
-        align="center"
-      >
-      </el-table-column>
+      
       <el-table-column
         prop="price"
-        label="价格"
+        label="预估价格"
         width="190"
         align="center"
       >
       </el-table-column>
-      <el-table-column prop="account" label="卖方" width="190" align="center">
+      <el-table-column prop="height" label="重量" width="190" align="center">
       </el-table-column>
-      <el-table-column label="操作" width="210" align="center">
-        <template slot-scope="scope">
-          <el-button
-            @click="handleClick(scope.row,scope.$index)"
-            type="text"
-            size="model"
-            style=""
-            >查看</el-button
-          >
-          <el-button type="text" size="model" @click="open(scope.row)"
-            >编辑</el-button
-          >
-        </template>
+      <el-table-column prop="station" label="回收站点" width="190" align="center">
+      </el-table-column>
+      
+      <el-table-column prop="date" label="回收日期" width="190" align="center">
       </el-table-column>
 
-      <el-table-column label="行数">  
-      <template slot-scope="scope">  
+      <el-table-column label="回收人员">  
+      <template slot-scope="">  
         <!-- scope.row 包含当前行的数据 -->  
         <!-- scope.$index 包含当前行的索引（行数，从0开始） -->  
-       {{ scope.$index+1 }}
+       小婴 
       </template>  
     </el-table-column>  
     </el-table>
@@ -123,9 +69,13 @@ export default {
           height: "",
           price: "",
           desc: "",
+          address: "",
           owned: "",
+          station: "",
+          date: "",
           account: "",
           createtime: "",
+          stationer: "小婴",
         },
       ],
       currentTableData:[],
@@ -138,7 +88,7 @@ export default {
         desc: "",
         owned: "",
         account: "",
-        status: 1,
+        status: 0,
         myaccount: localStorage.getItem("account"),
         createtime: new Date().toLocaleString(),
         updatetime: new Date().toLocaleString()

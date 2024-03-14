@@ -1,147 +1,61 @@
 <template>
-    <div style="color: black;text-decoration: none;font-size: large;" v-loading="loading">
-  单指标烟囱测试
+  <div style="color: black; text-decoration: none; font-size: large" v-loading="loading">
+    线下订单创建
     <el-form ref="form" :model="form" label-width="80px" style="height: 589px">
       <el-form-item label="">
-        <el-tag type="success" style="position: absolute; top: 5px; left: 0"
-          >数据分域</el-tag
-        >
-        <el-select v-model="form.active" placeholder="请选择数据域">
-          <el-option label="订单" value="order"></el-option>
-          <el-option label="流量" value="flow"></el-option>
-          <el-option label="房屋" value="house"></el-option>
-          <el-option label="用户" value="user"></el-option>
+        <el-tag type="success" style="position: absolute; top: 5px; left: 0">金属类型</el-tag>
+        <el-select v-model="form.type" placeholder="请选金属类型">
+          <el-option label="黄金" value="黄金"></el-option>
+          <el-option label="铂金" value="铂金"></el-option>
+          <el-option label="白银" value="白银"></el-option>
+          <el-option label="铂" value="铂"></el-option>
+          <el-option label="钴" value="钴"></el-option>
         </el-select>
       </el-form-item>
 
       <el-form-item label="">
-        <el-tag type="success" style="position: absolute; top: 5px; left: 0"
-          >数据分层</el-tag
-        >
-        <el-select v-model="form.regin" placeholder="数据分层">
-          <el-option label="dwd" value="dwd"></el-option>
-          <el-option
-            label="testmybatisplus"
-            value="testmybatisplus"
-          ></el-option>
+        <el-tag type="success" style="position: absolute; top: 5px; left: 0">金属重量</el-tag>
+        <el-select v-model="form.height" placeholder="重量">
+          <el-option label="1kg-10kg" value="1"></el-option>
+          <el-option label="10kg-20kg" value="10kg"></el-option>
+          <el-option label="20kg-30kg" value="20kg"></el-option>
+          <el-option label="30kg-40kg" value="30kg"></el-option>
+          <el-option label="需要测量" value="需要测量"></el-option>
         </el-select>
       </el-form-item>
 
       <el-form-item label="">
-        <el-tag type="success" style="position: absolute; top: 5px; left: 0"
-          >数仓表名</el-tag
-        >
-        <el-select v-model="form.tablename" placeholder="请选择数仓表">
-          <el-option label="自动建表" value="自动建表"> </el-option>
-          <el-option label="null" value="null"> </el-option>
+        <el-tag type="success" style="position: absolute; top: 5px; left: 0">回收站点</el-tag>
+        <el-select v-model="form.station" placeholder="回收站点">
+          <el-option label="陈松回收站" value="陈松回收站"></el-option>
+          <el-option label="小婴回收站" value="小婴回收站"></el-option>
+          <el-option label="华强回收站" value="华强回收站"></el-option>
+          <el-option label="阿里回收站" value="阿里回收站"></el-option>
         </el-select>
       </el-form-item>
       <el-form-item label="">
-        <el-tag type="success" style="position: absolute; top: 5px; left: 0"
-          >测试指标</el-tag
-        >
-        <el-select v-model="form.indicator" placeholder="请选择测试指标">
-          <el-option label="自动配置" value="自动配置"> </el-option>
-          <el-option label="null" value="null"> </el-option>
-        </el-select>
+        <el-tag type="success" style="position: absolute; top: 5px; left: 0">预估价格</el-tag>
+        <el-input type="textarea" v-model="form.price" style="width: 70%"></el-input>
       </el-form-item>
+
       <el-form-item label="">
-        <el-tag type="success" style="position: absolute; top: 5px; left: 0"
-          >测试描述</el-tag
-        >
-        <el-input
-          type="textarea"
-          v-model="form.comment"
-          style="width: 70%"
-        ></el-input>
+        <el-tag type="success" style="position: absolute; top: 5px; left: 0">备注信息</el-tag>
+        <el-input type="textarea" v-model="form.desc" style="width: 70%"></el-input>
       </el-form-item>
-      <div style="height: 50px">
-        <el-switch
-          style="position: fixed; left: 600px"
-          v-model="value1"
-          active-color="#13ce66"
-          active-text="sum()"
-        >
-        </el-switch>
-        <el-switch
-          style="position: fixed; left: 750px"
-          v-model="value2"
-          active-color="#13ce66"
-          active-text="count()"
-        >
-        </el-switch>
-        <el-switch
-          style="position: fixed; left: 900px"
-          v-model="value3"
-          active-color="#13ce66"
-          active-text="avg()"
-        >
-        </el-switch>
-        <el-switch
-          style="position: fixed; left: 1050px"
-          v-model="value4"
-          active-color="#13ce66"
-          active-text="count(distinct)"
-        >
-        </el-switch>
-        <el-switch
-          style="position: fixed; left: 1250px"
-          v-model="value4"
-          active-color="#13ce66"
-          active-text="count(null)"
-        >
-        </el-switch>
-        <el-switch
-          style="position: fixed; left: 1400px"
-          v-model="value4"
-          active-color="#13ce66"
-          active-text="max()"
-        >
-        </el-switch>
-        <el-switch
-          style="position: fixed; left: 1550px"
-          v-model="value4"
-          active-color="#13ce66"
-          active-text="min()"
-        >
-        </el-switch>
-      </div>
+
       <el-form-item style="height: 70px">
-        <el-tag type="success" style="position: absolute; top: 5px; left: 0"
-          >维度限制</el-tag
-        >
-        <div style="position: absolute; top: 1px; left: 220px; color: #131212">
-          where
-        </div>
+        <el-tag type="success" style="position: absolute; top: 5px; left: 0">回收信息</el-tag>
+
         <div class="demo-input-suffix">
-          <el-input
-            placeholder="请输入内容"
-            prefix-icon="el-icon"
-            v-model="value5"
-            style="position: fixed; left: 700px; width: 180px"
-          >
+          <el-input placeholder="请输入回收地址" prefix-icon="el-icon" v-model="form.address"
+            style="position: fixed; left: 800px; width: 180px">
           </el-input>
-          <el-input
-            placeholder="请选择日期"
-            suffix-icon="el-icon-date"
-            v-model="value6"
-            style="position: fixed; left: 1000px; width: 180px"
-          >
-          </el-input>
-          <el-switch
-          style="position: fixed; left: 1350px;bottom:260px"
-          v-model="value7"
-          active-color="#13ce66"
-          active-text="不为null"
-        >
-        </el-switch>
+          <div class="block">
+            <el-date-picker v-model="form.date" type="date" placeholder="选择回收日期"
+              style="position: fixed; left: 1400px; width: 180px" value-format="yyyy-MM-dd">
+            </el-date-picker>
+          </div>
         </div>
-      </el-form-item>
-      <el-form-item>
-        <el-tag type="success" style="position: absolute; top: 5px; left: 0"
-          >添加警报</el-tag
-        >
-        <el-switch v-model="form.owned"></el-switch>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="onSubmit">立即创建</el-button>
@@ -151,50 +65,55 @@
   </div>
 </template>
 <script>
+import request from '@/utitl/axios';
 export default {
   data() {
     return {
       form: {
-        active: "",
-        regin: "",
-        tablename: "",
-        indicator: "",
-        comment: "",
+        type: "",
+        height: "",
+        price: "",
+        address: "",
+        station: "",
+        date: "",
+        desc: "",
         owned: false,
         account: localStorage.getItem("account"),
         createtime: new Date().toLocaleString(),
         updatetime: new Date().toLocaleString(),
+        status: 0
       },
-      value1: false,
-      value2: false,
-      value3: false,
-      value4: false,
-      value5: '',
-      value6: '',
-      value7: '',
-      loading:false
+      loading: false,
     };
   },
-  methods:{
-    onSubmit(){
-        this.$confirm('创建测试', '提示', {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
-          type: 'warning'
-        }).then(() => {
-            this.loading=true
-          setTimeout(() => {
-            this.loading=false
+  methods: {
+     onSubmit() {
+      try {
+        this.$confirm("创建预约", "提示", {
+          confirmButtonText: "确定",
+          cancelButtonText: "取消",
+          type: "warning",
+        }).then(async () => {
+          this.loading = true;
+          if (this.form.type != '' && this.form.bargin != '' && this.form.price != '' && this.form.height != '' && this.form.desc != '') {
+            await request.post('/insert_face_order', this.form)
+
+          }
+         setTimeout(() => {
+            this.loading = false;
+
             this.$notify.success({
-            title: "提交成功",
-            message: "提交成功，测试已发布"
-          })
-        }, 2000);
-        
-        })
-    }
-  }
+              title: "提交成功",
+              message: "提交成功，已经预约" + this.date,
+            });
+          }, 2000);
+        });
+      } catch {
+
+      }
+
+    },
+  },
 };
 </script>
-<style>
-</style>
+<style></style>

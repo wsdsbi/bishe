@@ -7,14 +7,14 @@
             group-separator=","
             :precision="0"
             :value="value2"
-            title="原子指标总数"
+            title="订单历史总数"
           ></el-statistic>
         </div>
       </el-col>
 
       <el-col :span="6">
         <div>
-          <el-statistic title="完成度">
+          <el-statistic title="订单出售完成度">
             <template slot="formatter"> 456/128 </template>
           </el-statistic>
         </div>
@@ -26,7 +26,7 @@
             group-separator=","
             :precision="0"
             :value="value1"
-            title="指标增长量"
+            title="完成订单增长量"
           >
             <template slot="prefix">
               <i class="el-icon-s-flag" style="color: red"></i>
@@ -40,7 +40,7 @@
 
       <el-col :span="6">
         <div>
-          <el-statistic :value="value2" title="日使用次数">
+          <el-statistic :value="value2" title="日观看次数">
             <template slot="suffix">
               <span class="like">
                 <i class="el-icon-star-off" v-show="!like"></i>
@@ -51,8 +51,8 @@
       </el-col>
     </el-row>
     <div style="display: flex; align-items: center">
-      <div style="height: 70px; color: #000; margin-right: 640px;margin-left:340px ;">近五日指标日增长量</div>
-      <div style="height: 70px; color: #000">指标总量日报</div>
+      <div style="height: 70px; color: #000; margin-right: 640px;margin-left:340px ;">近五日订单量</div>
+      <div style="height: 70px; color: #000">订单观看总量日报</div>
     </div>
     <div class="container" style="">
       <div

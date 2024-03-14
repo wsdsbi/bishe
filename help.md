@@ -1,3 +1,5 @@
+datebase：testmybatisplus
+
 -- auto-generated definition
 create table user
 (
@@ -12,15 +14,25 @@ create table user
 );
 
 
-create table metal_info(
-    id int,
-    type varchar(255),
-    bargin varchar(255),
-    height varchar(255),
-    price varchar(255),
-    `desc` varchar(255),
-    account varchar(255),
-    owned varchar(255),
-    create_time time,
-    update_time time
-)
+-- auto-generated definition
+create table metal_info
+(
+    id          int auto_increment
+        primary key,
+    type        varchar(255)  null,
+    bargin      varchar(255)  null,
+    height      varchar(255)  null,
+    price       varchar(255)  null,
+    `desc`      varchar(255)  null,
+    owned       varchar(255)  null,
+    create_time datetime      null,
+    update_time datetime      null,
+    account     varchar(255)  null,
+    status      int default 1 not null,
+    address     varchar(255)  null,
+    date        datetime      null,
+    station     varchar(255)  null,
+    constraint metal_info_id_uindex
+        unique (id)
+);
+
